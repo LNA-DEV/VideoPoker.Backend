@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using VideoPoker.Backend.Cards;
 
 namespace VideoPoker.Backend
