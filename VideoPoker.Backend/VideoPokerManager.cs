@@ -5,6 +5,7 @@ namespace VideoPoker.Backend
 {
     public class VideoPokerManager
     {
+        public int Credits { get; set; } = 100;
         public int Bet { get; set; } = 1;
         public bool[] CardsHold { get; set; } = new bool[5];
 
@@ -12,6 +13,8 @@ namespace VideoPoker.Backend
 
         public Card[] Deal()
         {
+            Credits = Credits - Bet;
+
             Card[] cards = new Card[5];
 
             for (int i = 0; i < 5; i++)
@@ -36,6 +39,9 @@ namespace VideoPoker.Backend
                     }
                 }
             }
+
+            WinChecker winChecker = new WinChecker();
+            Credits += winChecker.CheckWin(cards, Bet);
 
             _cards = cards;
             return cards;

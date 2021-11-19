@@ -2,13 +2,13 @@
 {
     public enum CardValue
     {
-        Ass,
-        King,
-        Queen,
-        Jack,
-        Ten,
-        Nine,
-        Eight,
-        Seven
+        Ass = 14,
+        King = 13,
+        Queen = 12,
+        Jack = 11,
+        Ten = 10,
+        Nine = 9,
+        Eight = 8,
+        Seven = 7
     }
 }
