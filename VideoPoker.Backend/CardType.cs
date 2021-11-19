@@ -4,8 +4,11 @@ using System.Text;
 
 namespace VideoPoker.Backend
 {
-    public class Test
+    public enum CardType
     {
-        public int MyProperty { get; set; }
+        Spade,
+        Heart,
+        Diamond,
+        Club
     }
 }
