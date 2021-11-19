@@ -64,9 +64,9 @@ namespace VideoPoker.Backend.Test
             var cards = videoPokerManager.Deal();
 
             //Assert
-            for (int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < cards.Length; i++)
             {
-                for (int j = cards.Count - 1; j <= 0; j--)
+                for (int j = cards.Length - 1; j <= 0; j--)
                 {
                     if (cards[i].CardValue == cards[j].CardValue && cards[i].CardType == cards[j].CardType)
                     {
@@ -74,6 +74,7 @@ namespace VideoPoker.Backend.Test
                     }
                 }
             }
+            cards.Length.ShouldBeLessThan(6);
         }
     }
 }
