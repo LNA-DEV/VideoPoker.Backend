@@ -11,7 +11,21 @@ namespace VideoPoker.Backend
         {
             int score = 0;
 
-            if (CheckRoyalFlush(cards))
+            List<Card> cardsList = new List<Card>();
+            foreach (var item in cards)
+            {
+                cardsList.Add(item);
+            }
+            cardsList.Sort();
+
+            //First
+            if (CheckJacksOrBetter(cardsList))
+            {
+                score += bet;
+            }            
+
+            //Last
+            if (CheckRoyalFlush(cardsList))
             {
                 switch (bet)
                 {
@@ -39,7 +53,6 @@ namespace VideoPoker.Backend
             //score += CheckFlush(cards);
             //score += CheckStraight(cards);
             //score += Check2ofAKind(cards);
-            //score += CheckJacksOrBetter(cards);
 
             if (score > 0)
             {
@@ -49,9 +62,14 @@ namespace VideoPoker.Backend
             return score;
         }
 
-        private int CheckJacksOrBetter(Card[] cards)
+        private bool CheckJacksOrBetter(List<Card> cards)
         {
-            throw new NotImplementedException();
+            if (cards.Where(i => i.CardValue == CardValue.Jack).Count() >= 2 || cards.Where(i => i.CardValue == CardValue.Queen).Count() >= 2
+                ||cards.Where(i => i.CardValue == CardValue.King).Count() >= 2 || cards.Where(i => i.CardValue == CardValue.Ass).Count() >= 2)
+            {
+                return true;
+            }
+            return false;
         }
 
         private int Check2ofAKind(Card[] cards)
@@ -84,18 +102,13 @@ namespace VideoPoker.Backend
             throw new NotImplementedException();
         }
 
-        private bool CheckRoyalFlush(Card[] cards)
+        private bool CheckRoyalFlush(List<Card> cards)
         {
-            List<Card> cardsList = new List<Card>();
-            foreach (var item in cards)
-            {
-                cardsList.Add(item);
-            }
 
-            if (cardsList.Where(i => i.CardType == CardType.Club).Count() == 5 || cardsList.Where(i => i.CardType == CardType.Diamond).Count() == 5
-                || cardsList.Where(i => i.CardType == CardType.Heart).Count() == 5 || cardsList.Where(i => i.CardType == CardType.Spade).Count() == 5)
+            if (cards.Where(i => i.CardType == CardType.Club).Count() == 5 || cards.Where(i => i.CardType == CardType.Diamond).Count() == 5
+                || cards.Where(i => i.CardType == CardType.Heart).Count() == 5 || cards.Where(i => i.CardType == CardType.Spade).Count() == 5)
             {
-                var values = cardsList.Select(i => i.CardValue);
+                var values = cards.Select(i => i.CardValue);
                 var valuesInInt = values.Select(i => Convert.ToInt32(i)).ToList();
                 valuesInInt.Sort();
                 int total = valuesInInt[0] + valuesInInt[1] + valuesInInt[2] + valuesInInt[3] + valuesInInt[4];
