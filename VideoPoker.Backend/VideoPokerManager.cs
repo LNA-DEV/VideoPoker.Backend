@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using VideoPoker.Backend.Cards;
 
 namespace VideoPoker.Backend
 {
     public class VideoPokerManager
     {
-        public List<Card> Cards { get; set; } = new List<Card>();
         public int Bet { get; set; } = 1;
 
         public void Hold(int[] cards)
@@ -14,12 +13,27 @@ namespace VideoPoker.Backend
 
         }
 
-        public void Deal()
+        public List<Card> Deal()
         {
+            List<Card> cards = new List<Card>();
+
             for (int i = 0; i < 5; i++)
             {
-                Cards.Add(new Card(GetRandomCardType(), GetRandomCardValue(), false));
+                cards.Add(new Card(GetRandomCardType(), GetRandomCardValue(), false));
             }
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                for (int j = cards.Count - 1; j <= 0; j--)
+                {
+                    if (cards[i].CardValue == cards[j].CardValue && cards[i].CardType == cards[j].CardType)
+                    {
+                        return Deal();
+                    }
+                }
+            }
+
+            return cards;
         }
 
         public CardValue GetRandomCardValue()

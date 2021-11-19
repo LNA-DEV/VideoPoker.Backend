@@ -1,9 +1,7 @@
 ﻿using Shouldly;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using VideoPoker.Backend.Cards;
 using Xunit;
 
 namespace VideoPoker.Backend.Test
@@ -54,6 +52,28 @@ namespace VideoPoker.Backend.Test
             cards.Where(i => i == CardType.Diamond).ShouldNotBeEmpty();
             cards.Where(i => i == CardType.Club).ShouldNotBeEmpty();
             cards.Where(i => i == CardType.Spade).ShouldNotBeEmpty();
+        }
+
+        [Fact]
+        public void Deal()
+        {
+            //Arrange
+            VideoPokerManager videoPokerManager = new VideoPokerManager();
+
+            //Act
+            var cards = videoPokerManager.Deal();
+
+            //Assert
+            for (int i = 0; i < cards.Count; i++)
+            {
+                for (int j = cards.Count - 1; j <= 0; j--)
+                {
+                    if (cards[i].CardValue == cards[j].CardValue && cards[i].CardType == cards[j].CardType)
+                    {
+                        Assert.True(false);
+                    }
+                }
+            }
         }
     }
 }

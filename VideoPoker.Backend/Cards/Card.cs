@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace VideoPoker.Backend
+﻿namespace VideoPoker.Backend.Cards
 {
     public class Card
     {
