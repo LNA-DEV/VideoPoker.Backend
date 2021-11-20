@@ -12,25 +12,25 @@ namespace VideoPoker.Backend.Test
         public void GetRandomCardValue()
         {
             //Arrange
-            List<CardValue> cards = new List<CardValue>();
+            List<CardValue> cardValues = new List<CardValue>();
             VideoPokerManager videoPokerManager = new VideoPokerManager();
 
             //Act
             for (int i = 0; i < 100; i++)
             {
-                cards.Add(videoPokerManager.GetRandomCardValue());
+                cardValues.Add(videoPokerManager.GetRandomCardValue());
             }
 
             //Assert
-            cards.ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Eight).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.King).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Jack).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Queen).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Nine).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Seven).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Nine).ShouldNotBeEmpty();
-            cards.Where(i => i == CardValue.Ten).ShouldNotBeEmpty();
+            cardValues.ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Eight).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.King).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Jack).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Queen).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Nine).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Seven).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Nine).ShouldNotBeEmpty();
+            cardValues.Where(i => i == CardValue.Ten).ShouldNotBeEmpty();
         }
 
         [Fact]

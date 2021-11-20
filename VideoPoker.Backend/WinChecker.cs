@@ -16,8 +16,6 @@ namespace VideoPoker.Backend
             {
                 cardsList.Add(item);
             }
-            cardsList.Sort();
-
 
             if (CheckJacksOrBetter(cardsList))
             {
@@ -113,9 +111,12 @@ namespace VideoPoker.Backend
             int counter = 0;
             for (int i = 0; i < 5; i++)
             {
-                if ((int)cards[i].CardValue + 1 == (int)cards[i + 1].CardValue)
+                if (i < 4)
                 {
-                    counter++;
+                    if ((int)cards[i].CardValue + 1 == (int)cards[i + 1].CardValue)
+                    {
+                        counter++;
+                    }
                 }
             }
 

@@ -25,7 +25,7 @@ namespace VideoPoker.Backend
                 }
                 else
                 {
-                    cards[0] = new Card(GetRandomCardType(), GetRandomCardValue(), false);
+                    cards[i] = new Card(GetRandomCardType(), GetRandomCardValue());
                 }
             }
 
@@ -50,7 +50,7 @@ namespace VideoPoker.Backend
         public CardValue GetRandomCardValue()
         {
             Random random = new Random();
-            var randomInt = random.Next(0, 8);
+            var randomInt = random.Next(7, 15);
             return (CardValue)randomInt;
         }
 

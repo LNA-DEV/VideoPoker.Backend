@@ -2,7 +2,7 @@
 {
     public class Card
     {
-        public Card(CardType cardType, CardValue cardValue, bool isHold)
+        public Card(CardType cardType, CardValue cardValue)
         {
             this.CardType = cardType;
             this.CardValue = cardValue;
