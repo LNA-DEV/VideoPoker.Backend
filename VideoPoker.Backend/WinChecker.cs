@@ -18,41 +18,44 @@ namespace VideoPoker.Backend
             }
             cardsList.Sort();
 
-            //First
+
             if (CheckJacksOrBetter(cardsList))
             {
-                score += bet;
-            }            
+                score = bet;
+            }
 
-            //Last
+            if (Check3ofAKind(cardsList))
+            {
+                score = bet * 3;
+            }
+
+            if (Check4ofAKind(cardsList))
+            {
+                score = bet * 25;
+            }
+
             if (CheckRoyalFlush(cardsList))
             {
                 switch (bet)
                 {
                     case 1:
-                        score += 250;
+                        score = 250;
                         break;
                     case 2:
-                        score += 500;
+                        score = 500;
                         break;
                     case 3:
-                        score += 750;
+                        score = 750;
                         break;
                     case 4:
-                        score += 1000;
+                        score = 1000;
                         break;
                     case 5:
-                        score += 2000;
+                        score = 2000;
                         break;
                 }
             }
 
-            //score += CheckStraightFlush(cards);
-            //score += Check4ofAKind(cards);
-            //score += CheckFullHouse(cards);
-            //score += CheckFlush(cards);
-            //score += CheckStraight(cards);
-            //score += Check2ofAKind(cards);
 
             if (score > 0)
             {
@@ -72,32 +75,48 @@ namespace VideoPoker.Backend
             return false;
         }
 
-        private int Check2ofAKind(Card[] cards)
+        private bool Check3ofAKind(List<Card> cards)
+        {
+            for (int i = 7; i < 15; i++)
+            {
+                if (cards.Where(item => ((int)item.CardValue) == i).Count() == 3)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private int CheckStraight(List<Card> cards)
         {
             throw new NotImplementedException();
         }
 
-        private int CheckStraight(Card[] cards)
+        private int CheckFlush(List<Card> cards)
         {
             throw new NotImplementedException();
         }
 
-        private int CheckFlush(Card[] cards)
+        private int CheckFullHouse(List<Card> cards)
         {
             throw new NotImplementedException();
         }
 
-        private int CheckFullHouse(Card[] cards)
+        private bool Check4ofAKind(List<Card> cards)
         {
-            throw new NotImplementedException();
+            for (int i = 7; i < 15; i++)
+            {
+                if (cards.Where(item => ((int)item.CardValue) == i).Count() == 4)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
-        private int Check4ofAKind(Card[] cards)
-        {
-            throw new NotImplementedException();
-        }
-
-        private int CheckStraightFlush(Card[] cards)
+        private int CheckStraightFlush(List<Card> cards)
         {
             throw new NotImplementedException();
         }
