@@ -29,9 +29,29 @@ namespace VideoPoker.Backend
                 score = bet * 3;
             }
 
+            if (CheckStraight(cardsList))
+            {
+                score = bet * 4;
+            }
+
+            if (CheckFlush(cardsList))
+            {
+                score = bet * 6;
+            }
+
+            if (CheckFullHouse(cardsList))
+            {
+                score = bet * 9;
+            }
+
             if (Check4ofAKind(cardsList))
             {
                 score = bet * 25;
+            }
+
+            if (CheckStraightFlush(cardsList))
+            {
+                score = bet * 50;
             }
 
             if (CheckRoyalFlush(cardsList))
@@ -88,19 +108,55 @@ namespace VideoPoker.Backend
             return false;
         }
 
-        private int CheckStraight(List<Card> cards)
+        private bool CheckStraight(List<Card> cards)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            for (int i = 0; i < 5; i++)
+            {
+                if ((int)cards[i].CardValue + 1 == (int)cards[i + 1].CardValue)
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == 5)
+            {
+                return true;
+            }
+
+            return false;
         }
 
-        private int CheckFlush(List<Card> cards)
+        private bool CheckFlush(List<Card> cards)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < 4; i++)
+            {
+                if (cards.Where(item => (int)item.CardType == i).Count() == 4)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
-        private int CheckFullHouse(List<Card> cards)
+        private bool CheckFullHouse(List<Card> cards)
         {
-            throw new NotImplementedException();
+            int counter = 0;
+            for (int i = 7; i < 15; i++)
+            {
+                if (cards.Where(item => (int)item.CardValue == i).Count() >= 2)
+                {
+                    counter++;
+                }
+            }
+
+            if (counter == 2)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private bool Check4ofAKind(List<Card> cards)
@@ -116,9 +172,14 @@ namespace VideoPoker.Backend
             return false;
         }
 
-        private int CheckStraightFlush(List<Card> cards)
+        private bool CheckStraightFlush(List<Card> cards)
         {
-            throw new NotImplementedException();
+            if (CheckStraight(cards) && CheckFlush(cards))
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private bool CheckRoyalFlush(List<Card> cards)
