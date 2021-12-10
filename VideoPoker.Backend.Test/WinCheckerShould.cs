@@ -1,9 +1,4 @@
 ﻿using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VideoPoker.Backend.Cards;
 using Xunit;
 
@@ -15,7 +10,7 @@ namespace VideoPoker.Backend.Test
         public void CheckWin()
         {
             //Arrange
-            WinChecker winChecker = new ();
+            WinChecker winChecker = new();
             Card[] cards = new Card[5];
             cards[0] = new Card(CardType.Club, CardValue.Ass);
             cards[1] = new Card(CardType.Club, CardValue.King);
@@ -28,7 +23,7 @@ namespace VideoPoker.Backend.Test
             var score = winChecker.CheckWin(cards, 5);
 
             //Assert
-            score.ShouldBe(4000);
+            score.ShouldBe(2005);
         }
     }
 }

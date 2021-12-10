@@ -86,7 +86,7 @@ namespace VideoPoker.Backend
         private bool CheckJacksOrBetter(List<Card> cards)
         {
             if (cards.Where(i => i.CardValue == CardValue.Jack).Count() >= 2 || cards.Where(i => i.CardValue == CardValue.Queen).Count() >= 2
-                ||cards.Where(i => i.CardValue == CardValue.King).Count() >= 2 || cards.Where(i => i.CardValue == CardValue.Ass).Count() >= 2)
+                || cards.Where(i => i.CardValue == CardValue.King).Count() >= 2 || cards.Where(i => i.CardValue == CardValue.Ass).Count() >= 2)
             {
                 return true;
             }
