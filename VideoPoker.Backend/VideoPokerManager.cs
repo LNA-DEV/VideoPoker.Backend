@@ -9,7 +9,7 @@ namespace VideoPoker.Backend
         public int Bet { get; set; } = 1;
         public bool[] CardsHold { get; set; } = new bool[5];
 
-        private Card[] _cards = new Card[5];
+        private Card[] Cards = new Card[5];
 
         public Card[] Deal()
         {
@@ -21,7 +21,7 @@ namespace VideoPoker.Backend
             {
                 if (CardsHold[i])
                 {
-                    cards[i] = _cards[i];
+                    cards[i] = Cards[i];
                 }
                 else
                 {
@@ -40,11 +40,14 @@ namespace VideoPoker.Backend
                 }
             }
 
-            WinChecker winChecker = new WinChecker();
-            Credits += winChecker.CheckWin(cards, Bet);
-
-            _cards = cards;
+            Cards = cards;
             return cards;
+        }
+
+        public void CheckWin()
+        {
+            WinChecker winChecker = new WinChecker();
+            Credits += winChecker.CheckWin(Cards, Bet);
         }
 
         public CardValue GetRandomCardValue()
